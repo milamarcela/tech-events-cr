@@ -1,0 +1,104 @@
+/* Navegación para la página de eventos */
+/*=============
+Reset
+===============*/
+*{
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 16px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #1f2937;
+}
+a {
+    text-decoration: none;
+}
+
+/*=============
+Utilidades generales
+===============*/
+.container {
+    width: 90%;
+    margin: 0 auto;
+    /*margin: 10px 20px 30px 15px; */
+}
+
+/*=============
+Navegación
+===============*/
+.main-nav ul{
+    list-style: none;
+}
+.main-nav a{
+    color: #E8ebed;
+    padding: 3px 0;
+    font-weight: italic;
+    border-radius: 6px;
+    display : inline-block;
+}
+.main-nav a:hover{
+    background-color: #ffffff6f;
+    color: #0084ff;
+}
+.main-nav li {
+    display: inline-block;
+    margin-right: 18px;
+    margin-top: 10px;
+}
+
+.main-nav {
+    float : right;
+}
+
+.head-content {
+overflow: hidden;
+}
+
+/*=============
+Header
+===============*/
+.site-header {
+    background-color: #4e7bdce7;
+    color: #E8ebed;
+    padding: 18px 0;
+    border-bottom: 4px solid #365ca8;
+}
+
+/*=============
+Tabla de eventos (Estilo de la imagen)
+===============*/
+#t-eventos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px; /* Espacio extra arriba para simular la línea separadora */
+    background-color: #ffffff;
+    /* Esta es la línea negra gruesa que aparece arriba de todo en tu imagen */
+    border-top: 3px solid #000000; 
+}
+
+/* Estilo general para celdas de cuerpo y cabecera */
+th, td {
+    padding: 20px 15px; /* Ajustado para que las celdas sean altas como en tu foto */
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+/* Encabezado (Fila superior: Fondo blanco, texto negro) */
+th {
+    background-color: #00d0ff8b;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* El truco de la imagen: Alternar color gris en las FILAS del cuerpo */
+tbody tr:nth-child(even) {
+    background-color: #cccccc; /* Gris intermedio idéntico al de tu imagen */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Filas impares blancas */
+}
