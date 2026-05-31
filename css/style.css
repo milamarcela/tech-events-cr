@@ -1,21 +1,116 @@
 /* Navegación para la página de eventos */
+
 /*=============
-Reset
+Reset y Configuración Global
 ===============*/
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Evita que el padding rompa los anchos */
 }
+/* ==========================================================================
+   VARIABLES DE COLOR GLOBAL
+   ========================================================================== */
+:root {
+    --primary-color: #0f172a;    /* Azul medianoche (Header/Títulos) */
+    --accent-color: #2563eb;     /* Azul eléctrico (Botones/Enlaces activos) */
+    --accent-hover: #1d4ed8;     /* Azul más oscuro para los hovers */
+    --bg-main: #f8fafc;          /* Fondo de la página suave */
+    --bg-surface: #ffffff;       /* Fondo de tarjetas y tablas */
+    --text-main: #334155;        /* Texto principal muy legible */
+    --text-muted: #64748b;       /* Texto secundario */
+    --border-color: #e2e8f0;     /* Bordes sutiles modernos */
+}
+
+/* ==========================================================================
+   APLICACIÓN DE LA PALETA
+   ========================================================================== */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* Modificando tu Header con los nuevos tonos */
+.site-header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.main-nav a {
+    color: var(--text-muted);
+}
+
+.main-nav a.active, 
+.main-nav a:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Modificando tus Títulos */
+h1, h2, h3, h4 {
+    color: var(--primary-color);
+    letter-spacing: -0.02em; /* Hace que los títulos se vean más compactos y modernos */
+}
+
+/* Modificando el Botón Principal */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Las Tarjetas y Contenedores */
+.event-card, .featured-card, .media-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+}
+
+/* Ajustes sutiles para la Tabla */
+#t-eventos {
+    background-color: var(--bg-surface);
+}
+
+th {
+    background-color: #f1f5f9; /* Gris muy limpio para la cabecera de la tabla */
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8fafc; /* Alternancia casi imperceptible pero elegante */
+}
+
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f7fb;
-    color: #1f2937;
+    /* Una tipografía más moderna y limpia que Arial */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8fafc; /* Gris más suave y premium */
+    color: #1e293b; /* Azul/gris oscuro, menos agresivo que el negro puro */
+    line-height: 1.5;
 }
+
 a {
     text-decoration: none;
+    transition: all 0.2s ease; /* Transiciones suaves para los hovers */
 }
 
 /*=============
@@ -23,82 +118,311 @@ Utilidades generales
 ===============*/
 .container {
     width: 90%;
+    max-width: 1200px; /* Evita que en pantallas gigantes la web se estire infinitamente */
     margin: 0 auto;
-    /*margin: 10px 20px 30px 15px; */
 }
 
 /*=============
-Navegación
-===============*/
-.main-nav ul{
-    list-style: none;
-}
-.main-nav a{
-    color: #E8ebed;
-    padding: 3px 0;
-    font-weight: italic;
-    border-radius: 6px;
-    display : inline-block;
-}
-.main-nav a:hover{
-    background-color: #ffffff6f;
-    color: #0084ff;
-}
-.main-nav li {
-    display: inline-block;
-    margin-right: 18px;
-    margin-top: 10px;
-}
-
-.main-nav {
-    float : right;
-}
-
-.head-content {
-overflow: hidden;
-}
-
-/*=============
-Header
+Header y Navegación (Modernizado con Flexbox)
 ===============*/
 .site-header {
-    background-color: #4e7bdce7;
-    color: #E8ebed;
-    padding: 18px 0;
-    border-bottom: 4px solid #365ca8;
+    background-color: #1e40af; /* Azul corporativo sólido y profesional */
+    color: #f8fafc;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra sutil en lugar de borde grueso */
+}
+
+/* Reemplaza el truco de overflow: hidden */
+.head-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex; /* Alinea los elementos en fila automáticamente */
+    gap: 1.25rem;  /* Espaciado moderno entre enlaces */
+}
+
+.main-nav a {
+    color: #e2e8f0;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Efecto translúcido limpio */
+    color: #ffffff;
 }
 
 /*=============
-Tabla de eventos (Estilo de la imagen)
+Tabla de eventos (Estilo Profesional)
 ===============*/
 #t-eventos {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 40px; /* Espacio extra arriba para simular la línea separadora */
+    margin-top: 40px;
     background-color: #ffffff;
-    /* Esta es la línea negra gruesa que aparece arriba de todo en tu imagen */
-    border-top: 3px solid #000000; 
+    border-radius: 8px;
+    overflow: hidden; /* Corta las esquinas para que se vea el border-radius */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Sombra elegante */
 }
 
-/* Estilo general para celdas de cuerpo y cabecera */
+/* Estilo para las celdas */
 th, td {
-    padding: 20px 15px; /* Ajustado para que las celdas sean altas como en tu foto */
+    padding: 16px 20px; /* Padding equilibrado */
     text-align: left;
-    border: 1px solid #000000;
+    border-bottom: 1px solid #e2e8f0; /* Líneas divisorias sutiles en lugar de negras */
 }
 
-/* Encabezado (Fila superior: Fondo blanco, texto negro) */
+/* Encabezado de la tabla */
 th {
-    background-color: #00d0ff8b;
-    color: #000000;
-    font-weight: bold;
+    background-color: #f1f5f9; /* Gris muy claro, resalta los títulos de forma madura */
+    color: #0f172a;
+    font-weight: 600;
+    text-transform: uppercase; /* Da un toque más formal */
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
 }
 
-/* El truco de la imagen: Alternar color gris en las FILAS del cuerpo */
+/* Alternancia de colores en las filas (Sutil) */
 tbody tr:nth-child(even) {
-    background-color: #cccccc; /* Gris intermedio idéntico al de tu imagen */
+    background-color: #f8fafc; /* Alternancia muy suave, descansa la vista */
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* Filas impares blancas */
+    background-color: #ffffff;
+}
+
+/* Efecto hover en las filas (Aporta mucha interactividad) */
+tbody tr:hover {
+    background-color: #f1f5f9; 
+    cursor: pointer;
+}
+
+/* ==========================================================================
+CATÁLOGO DE EVENTOS (TARJETAS)
+   ========================================================================== */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.event-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Recorta la imagen armónicamente sin deformarla */
+    display: block;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Etiquetas de Categorías */
+.category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-bottom: 0.5rem;
+}
+.category-badge.web { background: #e0f2fe; color: #0369a1; }
+.category-badge.ia { background: #f3e8ff; color: #6b21a8; }
+.category-badge.security { background: #fee2e2; color: #991b1b; }
+
+/* Control de responsividad para la tabla */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Si la tabla es muy grande en celular, permite scroll horizontal sin romper el sitio */
+}
+
+.badge-status {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 4px;
+}
+.badge-status.presencial { background-color: #d1fae5; color: #065f46; }
+.badge-status.hibrida { background-color: #fef3c7; color: #92400e; }
+
+/* ==========================================================================
+   DISEÑO DE COMPONENTES DE LA PÁGINA DE INICIO
+   ========================================================================== */
+
+/* Contenedor Principal en dos columnas (Main Content Grid) */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 992px) {
+    .main-layout {
+        grid-template-columns: 2.5fr 1fr; /* El contenido central es más ancho que la barra lateral */
+    }
+}
+
+/* Texto destacado de introducción */
+.lead-text {
+    font-size: 1.2rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Figura de la imagen destacada */
+.featured-figure {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.featured-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.featured-figure figcaption {
+    background-color: #f1f5f9;
+    color: #64748b;
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    text-align: center;
+    font-style: italic;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Bloque de Anuncio / Badge */
+.announcement-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 2rem;
+}
+
+.announcement-badge p {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 0.95rem;
+}
+
+.badge-tag {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+
+/* Listas con viñetas estilizadas */
+.styled-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: #374151;
+}
+
+.styled-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* Sección de Contenido Multimedia */
+.media-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 576px) {
+    .media-grid {
+        grid-template-columns: 1fr 1fr; /* El video y el audio se alinean lado a lado */
+    }
+}
+
+.media-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.media-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+}
+
+.media-card video,
+.media-card audio {
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* Contenedor del Mapa Responsivo */
+.map-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+.map-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
